@@ -109,5 +109,4 @@ begin
   return r;
 end $f$;
 grant execute on function public.track_order(text, text) to anon, authenticated;
-update public.stock s set qty = (e->>'stock')::int from public.kv, jsonb_array_elements(kv.value) e where kv.key = 'products' and s.product_id = (e->>'id')::int;
 update public.kv set value = jsonb_set(value, '{announcement}', to_jsonb('نسخة تجريبية: المتجر قيد التجهيز والطلبات للتجربة فقط ولن تُنفّذ'::text)) where key = 'settings';
